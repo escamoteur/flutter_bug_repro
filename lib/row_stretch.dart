@@ -33,11 +33,15 @@ class RowStretch extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+                        EventInfoBlock(title: "Block1", children: <Widget>[
+
+                        
                         Text('SomeText'),
                         Text('SomeText'),
                         Text('SomeText'),
                         Text('SomeText'),
                         Text('SomeText'),
+                        ]),
                       ],
                     ),
                   ),
@@ -46,6 +50,46 @@ class RowStretch extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class EventInfoBlock extends StatelessWidget {
+  final String title;
+  final List<Widget> children;
+
+  const EventInfoBlock({
+    Key key,
+    this.title,
+    this.children,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> rows = [
+      Text(
+        title,
+        style: Theme.of(context).textTheme.caption,
+      ),
+      SizedBox(
+        height: 10.0,
+      ),
+      Padding(
+          padding: const EdgeInsets.only(left: 10.0, right: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: children,
+          ))
+    ];
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10.0),
+      padding: const EdgeInsets.all(15.0),
+      color: Colors.white,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: rows,
       ),
     );
   }
